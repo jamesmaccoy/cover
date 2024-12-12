@@ -77,6 +77,11 @@ export const Policies: CollectionConfig<'policies'> = {
       required: true,
     },
     {
+      name: 'amount',
+      type: 'number',
+      required: true,
+    },
+    {
       type: 'tabs',
       tabs: [
         {

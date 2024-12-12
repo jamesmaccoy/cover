@@ -376,6 +376,7 @@ export interface Category {
 export interface Policy {
   id: string;
   title: string;
+  amount: number;
   content: {
     root: {
       type: string;
@@ -899,6 +900,7 @@ export interface PagesSelect<T extends boolean = true> {
  */
 export interface PoliciesSelect<T extends boolean = true> {
   title?: T;
+  amount?: T;
   content?: T;
   relatedPolicies?: T;
   categories?: T;
