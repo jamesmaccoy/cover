@@ -82,6 +82,13 @@ export const Policies: CollectionConfig<'policies'> = {
       required: true,
     },
     {
+      name: 'beneficiary',
+      type: 'join',
+      collection: 'beneficiary',
+      on: 'parent',
+      admin: {}
+    },
+    {
       type: 'tabs',
       tabs: [
         {

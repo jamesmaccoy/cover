@@ -10,6 +10,7 @@ import { Categories } from './collections/Categories'
 import { Media } from './collections/Media'
 import { Pages } from './collections/Pages'
 import { Policies } from './collections/Policies'
+import { Beneficiary } from './collections/Beneficiary'
 import { Users } from './collections/Users'
 import { Footer } from './Footer/config'
 import { Header } from './Header/config'
@@ -64,7 +65,7 @@ export default buildConfig({
     url: process.env.DATABASE_URI,
   }),
   // database-adapter-config-end
-  collections: [Pages, Policies, Media, Categories, Users],
+  collections: [Pages, Policies, Beneficiary, Media, Categories, Users],
   cors: [getServerSideURL()].filter(Boolean),
   globals: [Header, Footer],
   plugins: [

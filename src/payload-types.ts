@@ -13,6 +13,7 @@ export interface Config {
   collections: {
     pages: Page;
     policies: Policy;
+    beneficiary: Beneficiary;
     media: Media;
     categories: Category;
     users: User;
@@ -24,10 +25,15 @@ export interface Config {
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
-  collectionsJoins: {};
+  collectionsJoins: {
+    policies: {
+      beneficiary: 'beneficiary';
+    };
+  };
   collectionsSelect: {
     pages: PagesSelect<false> | PagesSelect<true>;
     policies: PoliciesSelect<false> | PoliciesSelect<true>;
+    beneficiary: BeneficiarySelect<false> | BeneficiarySelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
@@ -377,6 +383,10 @@ export interface Policy {
   id: string;
   title: string;
   amount: number;
+  beneficiary?: {
+    docs?: (string | Beneficiary)[] | null;
+    hasNextPage?: boolean | null;
+  } | null;
   content: {
     root: {
       type: string;
@@ -412,6 +422,18 @@ export interface Policy {
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "beneficiary".
+ */
+export interface Beneficiary {
+  id: string;
+  name: string;
+  parent?: (string | null) | Policy;
+  'unnessesary info'?: string | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -705,6 +727,10 @@ export interface PayloadLockedDocument {
         value: string | Policy;
       } | null)
     | ({
+        relationTo: 'beneficiary';
+        value: string | Beneficiary;
+      } | null)
+    | ({
         relationTo: 'media';
         value: string | Media;
       } | null)
@@ -901,6 +927,7 @@ export interface PagesSelect<T extends boolean = true> {
 export interface PoliciesSelect<T extends boolean = true> {
   title?: T;
   amount?: T;
+  beneficiary?: T;
   content?: T;
   relatedPolicies?: T;
   categories?: T;
@@ -924,6 +951,17 @@ export interface PoliciesSelect<T extends boolean = true> {
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "beneficiary_select".
+ */
+export interface BeneficiarySelect<T extends boolean = true> {
+  name?: T;
+  parent?: T;
+  'unnessesary info'?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

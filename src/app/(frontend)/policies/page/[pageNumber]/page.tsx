@@ -38,7 +38,7 @@ export default async function Page({ params: paramsPromise }: Args) {
       <PageClient />
       <div className="container mb-16">
         <div className="prose dark:prose-invert max-w-none">
-          <h1>Policies</h1>
+          <h1>We you die we pay</h1>
         </div>
       </div>
 
